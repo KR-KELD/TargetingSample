@@ -12,20 +12,18 @@ class TARGETINGSAMPLE_API AMyCharacterBase : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AMyCharacterBase();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	float GetHp() const { return CurrentHP; }
+	float GetMaxHp() const { return MaxHP; }
+	int32 GetTeamNumber() const { return TeamNumber; }
+public:
+	UPROPERTY(EditAnywhere)
+	int32 TeamNumber;
+private:
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	
-	
+	UPROPERTY()
+	float CurrentHP;
+	UPROPERTY()
+	float MaxHP;
 };
