@@ -56,8 +56,9 @@ void UBTService_Targeting::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* No
 		{
 			if (IsValid(TargetActor))
 			{
-				DrawDebugLine(GetWorld(), MyActor->GetActorLocation(), TargetActor->GetActorLocation(), bAllyTargeting ? FColor::Blue : FColor::Red, false, DeltaSeconds);
-				DrawDebugSphere(GetWorld(), TargetActor->GetActorLocation(), bAllyTargeting ? 100.0f : 90.0f, 20, bAllyTargeting ? FColor::Blue : FColor::Red, false, DeltaSeconds);
+				FVector StartLoc = MyActor->GetActorLocation();
+				FVector EndLoc = StartLoc + (TargetActor->GetActorLocation() - StartLoc) / 3.0f;
+				DrawDebugDirectionalArrow(GetWorld(), StartLoc, EndLoc, 50.0f, bAllyTargeting ? FColor::Blue : FColor::Red, false, DeltaSeconds);
 			}
 			else
 			{
